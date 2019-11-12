@@ -44,8 +44,8 @@ install( FILES
   )
 
 install( FILES
-	$<TARGET_FILE:Qt5::Core>
-	$<TARGET_FILE:Qt5::Quick>
+	$<TARGET_FILE_DIR:Qt5::Core>/libQt5Core*.so
+	$<TARGET_FILE_DIR:Qt5::Core>/libQt5Quick*.so
 	DESTINATION .
   )
 
