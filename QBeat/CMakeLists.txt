@@ -45,16 +45,16 @@ install( FILES
 
 install( FILES
  $<TARGET_FILE:Qt5::Core>
- #$<TARGET_FILE_DIR:Qt5::Core>/libQt5Core.so
+ $<TARGET_FILE_DIR:Qt5::Core>/libQt5Core.so
  $<TARGET_FILE_DIR:Qt5::Core>/libQt5Core.so.5
  $<TARGET_FILE:Qt5::Gui>
- #$<TARGET_FILE_DIR:Qt5::Core>/libQt5Gui.so
+ $<TARGET_FILE_DIR:Qt5::Core>/libQt5Gui.so
  $<TARGET_FILE_DIR:Qt5::Core>/libQt5Gui.so.5
  $<TARGET_FILE:Qt5::Network>
- #$<TARGET_FILE_DIR:Qt5::Core>/libQt5Network.so
+ $<TARGET_FILE_DIR:Qt5::Core>/libQt5Network.so
  $<TARGET_FILE_DIR:Qt5::Core>/libQt5Network.so.5
  $<TARGET_FILE:Qt5::Qml>
- #$<TARGET_FILE_DIR:Qt5::Core>/libQt5Qml.so
+ $<TARGET_FILE_DIR:Qt5::Core>/libQt5Qml.so
  $<TARGET_FILE_DIR:Qt5::Core>/libQt5Qml.so.5
  DESTINATION . )
 
