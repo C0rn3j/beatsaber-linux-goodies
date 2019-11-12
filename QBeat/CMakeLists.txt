@@ -43,3 +43,9 @@ install( FILES
   DESTINATION .
   )
 
+install( FILES
+	$<TARGET_FILE:Qt5::Core>
+	$<TARGET_FILE:Qt5::Quick>
+	DESTINATION .
+  )
+
