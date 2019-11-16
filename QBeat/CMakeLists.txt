@@ -23,7 +23,7 @@ add_executable(${PROJECT_NAME}
 )  
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Quick minizip)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Network Qt5::Gui Qt5::Qml minizip)
 
 install( TARGETS ${PROJECT_NAME}
    RUNTIME DESTINATION .
@@ -42,4 +42,19 @@ install( FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE
   DESTINATION .
   )
+
+function( install_qtlib _target _libname )
+  # TODO: Symlink version hardcoded to 5..
+  install( FILES
+    $<TARGET_FILE_DIR:${_target}>/${_libname}
+    $<TARGET_FILE_DIR:${_target}>/${_libname}.5
+    $<TARGET_FILE:${_target}>
+    DESTINATION .
+)
+endfunction()
+
+install_qtlib( Qt5::Core libQt5Core.so )
+install_qtlib( Qt5::Network libQt5Network.so )
+install_qtlib( Qt5::Gui libQt5Gui.so )
+install_qtlib( Qt5::Qml libQt5Qml.so )
 
