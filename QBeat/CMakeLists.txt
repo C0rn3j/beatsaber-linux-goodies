@@ -43,7 +43,6 @@ install( FILES
   DESTINATION .
   )
 
-<<<<<<< HEAD
 function( install_qtlib _target _libname )
   # TODO: Symlink version hardcoded to 5..
   install( FILES
