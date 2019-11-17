@@ -11,6 +11,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(ZLIB REQUIRED)
 
+set( CMAKE_INSTALL_RPATH "." )
+
 add_executable(${PROJECT_NAME} 
   util.cpp
   settings.cpp
@@ -57,4 +59,11 @@ install_qtlib( Qt5::Core libQt5Core.so )
 install_qtlib( Qt5::Network libQt5Network.so )
 install_qtlib( Qt5::Gui libQt5Gui.so )
 install_qtlib( Qt5::Qml libQt5Qml.so )
+
+install( FILES
+  $<TARGET_FILE_DIR:Qt5::Core>/libicui18n.so
+  $<TARGET_FILE_DIR:Qt5::Core>/libicui18n.so.56
+  $<TARGET_FILE_DIR:Qt5::Core>/libicui18n.so.56.1
+  DESTINATION .
+
 
