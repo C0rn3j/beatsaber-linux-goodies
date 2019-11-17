@@ -65,5 +65,6 @@ install( FILES
   $<TARGET_FILE_DIR:Qt5::Core>/libicui18n.so.56
   $<TARGET_FILE_DIR:Qt5::Core>/libicui18n.so.56.1
   DESTINATION .
+  )
 
 
