@@ -71,41 +71,41 @@ if ! ./bs-linux-is-wine-valid.sh ${winePrefix} > /dev/null; then
   exit 1
 fi
 
-bsInstall=$(realpath "${1}")
-protonInstall=$(realpath "${2}")
+#bsInstall=$(realpath "${1}")
+#protonInstall=$(realpath "${2}")
 
-echo "Creating custom Proton installation for Beat Saber use"
-rm -rf "${bsProtonDir}" || true
-mkdir -p "${compatTools}"
-cp -r "${protonInstall}" "${bsProtonDir}"
+#echo "Creating custom Proton installation for Beat Saber use"
+#rm -rf "${bsProtonDir}" || true
+#mkdir -p "${compatTools}"
+#cp -r "${protonInstall}" "${bsProtonDir}"
 
-if [ $? -ne 0 ]; then
-	echo "Failed to copy Proton installation"
-	exit 1
-fi
+#if [ $? -ne 0 ]; then
+#	echo "Failed to copy Proton installation"
+#	exit 1
+#fi
 
 # Setup the tool config for steam
-cat <<EOM >"${bsProtonDir}/compatibilitytool.vdf"
-"compatibilitytools"
-{
-  "compat_tools"
-  {
-    "${bsProtonName}"
-    {
-      "install_path" "."
-      "display_name" "${bsProtonName}"
-      "from_oslist"  "windows"
-      "to_oslist"    "linux"
-    }
-  }
-}
-EOM
+#cat <<EOM >"${bsProtonDir}/compatibilitytool.vdf"
+#"compatibilitytools"
+#{
+#  "compat_tools"
+#  {
+#    "${bsProtonName}"
+#    {
+#      "install_path" "."
+#      "display_name" "${bsProtonName}"
+#      "from_oslist"  "windows"
+#      "to_oslist"    "linux"
+#    }
+#  }
+#}
+#EOM
 
-mv "${bsProtonDir}/dist/lib64/wine/winhttp.dll.so" "${bsProtonDir}/dist/lib64/wine/winhttp_alt.dll.so" &> /dev/null || true
-mv "${compatData}/pfx/drive_c/windows/syswow64/winhttp.dll" "${compatData}/pfx/drive_c/windows/syswow64/winhttp_alt.dll" &> /dev/null || true
+#mv "${bsProtonDir}/dist/lib64/wine/winhttp.dll.so" "${bsProtonDir}/dist/lib64/wine/winhttp_alt.dll.so" &> /dev/null || true
+#mv "${compatData}/pfx/drive_c/windows/syswow64/winhttp.dll" "${compatData}/pfx/drive_c/windows/syswow64/winhttp_alt.dll" &> /dev/null || true
 
 # Patching BS with IPA.exe
-pushd "${bsInstall}" &> /dev/null
+#pushd "${bsInstall}" &> /dev/null
 
 # TODO: Would be nice to exploit the Proton installation here, or otherwise not require the user to deal with winetricks
 #WINEPATH="${bsProtonDir}/dist/bin/wine64" WINEPREFIX="${bsProtonDir}/dist/share/default_pfx" "${bsProtonDir}/dist/bin/wine64" IPA.exe
@@ -118,14 +118,14 @@ if [ $? -ne 0 ]; then
 fi
 
 # Configure wine registry to ensure winhttp.dll loads correctly
-userRegFile="${bsInstall}/../../compatdata/620980/pfx/user.reg"
-echo '[Software\\Wine\\DllOverrides]' >> "${userRegFile}"
-echo '"winhttp"="native,builtin"' >> "${userRegFile}"
+#userRegFile="${bsInstall}/../../compatdata/620980/pfx/user.reg"
+#echo '[Software\\Wine\\DllOverrides]' >> "${userRegFile}"
+#echo '"winhttp"="native,builtin"' >> "${userRegFile}"
 
-if [ $? -ne 0 ]; then
-        echo "ERROR: Failed to add Wine DllOverrides to ${userRegFile}"
-	exit 1
-fi
+#if [ $? -ne 0 ]; then
+#        echo "ERROR: Failed to add Wine DllOverrides to ${userRegFile}"
+#	exit 1
+#fi
 
 echo ""
 echo "SUCCESS: Beat Saber has been modded successfully, have fun hitting block <3"
